@@ -160,7 +160,8 @@ class MotionPlayer:
         root_rot_all = []
         rot_vec_all = []
         
-        max_motion_length = 600  # motion_data.shape[0]
+        # max_motion_length = 600  # motion_data.shape[0]
+        max_motion_length = self.args.motion_lenth
         # main loop
         while not self.gym.query_viewer_has_closed(self.viewer):
             for frame_nr in range(80, max_motion_length):
@@ -324,6 +325,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--file_name', type=str, help="File name", default='walk1_subject1')
     parser.add_argument('--robot_type', type=str, help="Robot type", default='g1')
+    parser.add_argument('--motion_lenth', type=int, help="motion lenth", default=600)
     args = parser.parse_args()
     
     loader = MotionPlayer(args)
